@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lời Mời Đặc Biệt ❤️</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+            overflow:hidden;
+        }
+
+        .container{
+            text-align:center;
+        }
+
+        h1{
+            color:white;
+            font-size:3rem;
+            margin-bottom:30px;
+            text-shadow:2px 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .buttons{
+            position:relative;
+            width:500px;
+            height:200px;
+            margin:auto;
+        }
+
+        button{
+            padding:15px 35px;
+            font-size:20px;
+            border:none;
+            border-radius:30px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+        #yesBtn{
+            background:#ff4d6d;
+            color:white;
+        }
+
+        #yesBtn:hover{
+            transform:scale(1.1);
+        }
+
+        #noBtn{
+            position:absolute;
+            left:280px;
+            top:0;
+            background:white;
+            color:#333;
+        }
+
+        #result{
+            margin-top:30px;
+            font-size:2rem;
+            color:white;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Mai chịu đi chơi với tui không? ❤️</h1>
+
+    <div class="buttons">
+        <button id="yesBtn">Có 🥰</button>
+        <button id="noBtn">Không 😆</button>
+    </div>
+
+    <div id="result"></div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const result = document.getElementById("result");
+
+    function moveButton() {
+        const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+        const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noBtn.style.position = "fixed";
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+    }
+
+    noBtn.addEventListener("mouseenter", moveButton);
+    noBtn.addEventListener("click", moveButton);
+
+    yesBtn.addEventListener("click", () => {
+        document.body.innerHTML = `
+            <div style="
+                height:100vh;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                flex-direction:column;
+                background:linear-gradient(135deg,#ff758c,#ff7eb3);
+                color:white;
+                font-family:Arial;
+                text-align:center;
+            ">
+                <h1 style="font-size:60px;">Yayyy ❤️</h1>
+                <h2>Mai 8h tui qua đón nha 🥰</h2>
+            </div>
+        `;
+    });
+</script>
+
+</body>
+</html>
