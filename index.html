@@ -1,130 +1,205 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lời Mời Đặc Biệt ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Một câu hỏi nhỏ ❤️</title>
 
-    <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family: Arial, sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
 
-        body{
-            height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-            overflow:hidden;
-        }
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    overflow:hidden;
+}
 
-        .container{
-            text-align:center;
-        }
+.card{
+    width:90%;
+    max-width:400px;
+    background:rgba(255,255,255,0.95);
+    border-radius:25px;
+    padding:35px 25px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    position:relative;
+    z-index:10;
+}
 
-        h1{
-            color:white;
-            font-size:3rem;
-            margin-bottom:30px;
-            text-shadow:2px 2px 10px rgba(0,0,0,0.2);
-        }
+.heart{
+    font-size:55px;
+    animation:beat 1s infinite;
+}
 
-        .buttons{
-            position:relative;
-            width:500px;
-            height:200px;
-            margin:auto;
-        }
+@keyframes beat{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.15);}
+}
 
-        button{
-            padding:15px 35px;
-            font-size:20px;
-            border:none;
-            border-radius:30px;
-            cursor:pointer;
-            transition:0.3s;
-        }
+h1{
+    margin-top:15px;
+    color:#ff4f81;
+    font-size:1.8rem;
+}
 
-        #yesBtn{
-            background:#ff4d6d;
-            color:white;
-        }
+p{
+    margin-top:10px;
+    color:#666;
+    line-height:1.5;
+}
 
-        #yesBtn:hover{
-            transform:scale(1.1);
-        }
+.btn-area{
+    margin-top:30px;
+    position:relative;
+    height:70px;
+}
 
-        #noBtn{
-            position:absolute;
-            left:280px;
-            top:0;
-            background:white;
-            color:#333;
-        }
+button{
+    border:none;
+    padding:14px 30px;
+    border-radius:50px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
 
-        #result{
-            margin-top:30px;
-            font-size:2rem;
-            color:white;
-            font-weight:bold;
-        }
-    </style>
+#yesBtn{
+    background:#ff4f81;
+    color:white;
+    font-weight:600;
+}
+
+#yesBtn:hover{
+    transform:scale(1.08);
+}
+
+#noBtn{
+    background:#e9e9e9;
+    color:#333;
+    position:absolute;
+    left:55%;
+    top:0;
+}
+
+.success{
+    animation:fade .6s ease;
+}
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.floating-heart{
+    position:fixed;
+    bottom:-20px;
+    animation:floatUp linear forwards;
+    opacity:.7;
+}
+
+@keyframes floatUp{
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+</style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Mai chịu đi chơi với tui không? ❤️</h1>
+<div class="card" id="card">
 
-    <div class="buttons">
-        <button id="yesBtn">Có 🥰</button>
-        <button id="noBtn">Không 😆</button>
+    <div class="heart">❤️</div>
+
+    <h1>CC ưi mai chịu đi chơi với tui không?</h1>
+
+    <div class="btn-area">
+        <button id="yesBtn">Có nè 🥰</button>
+        <button id="noBtn">Không 😝</button>
     </div>
 
-    <div id="result"></div>
 </div>
 
 <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const result = document.getElementById("result");
 
-    function moveButton() {
-        const maxX = window.innerWidth - noBtn.offsetWidth - 20;
-        const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const card = document.getElementById("card");
 
-        const randomX = Math.random() * maxX;
-        const randomY = Math.random() * maxY;
+function moveNoButton(){
 
-        noBtn.style.position = "fixed";
-        noBtn.style.left = randomX + "px";
-        noBtn.style.top = randomY + "px";
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+}
+
+noBtn.addEventListener("mouseenter", moveNoButton);
+noBtn.addEventListener("touchstart", moveNoButton);
+noBtn.addEventListener("click", moveNoButton);
+
+yesBtn.addEventListener("click", () => {
+
+    card.innerHTML = `
+        <div class="success">
+            <div style="font-size:70px;">🥰</div>
+
+            <h1 style="margin-top:15px;">
+                Yayyyyy ❤️
+            </h1>
+
+            <p style="margin-top:15px;font-size:18px;">
+                Tui biết mà 😚
+                <br><br>
+                Mai nhớ dành thời gian cho tui nha 💕
+            </p>
+        </div>
+    `;
+
+    createHearts();
+});
+
+function createHearts(){
+
+    for(let i=0;i<40;i++){
+
+        const heart=document.createElement("div");
+
+        heart.innerHTML="❤️";
+        heart.classList.add("floating-heart");
+
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=(15+Math.random()*25)+"px";
+        heart.style.animationDuration=(3+Math.random()*4)+"s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },7000);
     }
+}
 
-    noBtn.addEventListener("mouseenter", moveButton);
-    noBtn.addEventListener("click", moveButton);
-
-    yesBtn.addEventListener("click", () => {
-        document.body.innerHTML = `
-            <div style="
-                height:100vh;
-                display:flex;
-                justify-content:center;
-                align-items:center;
-                flex-direction:column;
-                background:linear-gradient(135deg,#ff758c,#ff7eb3);
-                color:white;
-                font-family:Arial;
-                text-align:center;
-            ">
-                <h1 style="font-size:60px;">Yayyy ❤️</h1>
-                <h2>Mai 8h tui qua đón nha 🥰</h2>
-            </div>
-        `;
-    });
 </script>
 
 </body>
